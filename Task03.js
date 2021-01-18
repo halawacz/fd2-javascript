@@ -3,12 +3,12 @@
 
 class User {
   constructor() {
-    this.firstName = "";
-    this.lastName = "";
-    this.patronymicName = "";
+    this.firstName;
+    this.lastName;
+    this.patronymicName;
     this.ageYears;
-    this.gender = "";
-    this.isRetired = false;
+    this.gender;
+    this.isRetired;
   }
 }
 
@@ -66,4 +66,4 @@ alert(
     user.gender +
     "\n" +
     `Вы на пенсии: ${user.isRetired ? "Да" : "Нет"}`
-);
+);    
