@@ -1,8 +1,7 @@
 //N.07 Домашнее задание VOWELS (а, у, о, ы, и, э, я, ю, ё, е))
 
-var vowelsCount = 0;
-
 function countVowels(userInput) {
+  var vowelsCount = 0;
   for (i = 0; i <= userInput.length; i++) {
     if (
       userInput[i] == "а" ||
@@ -23,6 +22,5 @@ function countVowels(userInput) {
 }
 
 userInput = String(prompt("Введите строку: "));
-countVowels(userInput);
-alert("Число гласных в строке: " + vowelsCount);
-console.log(vowelsCount);
+
+console.log("Число гласных в строке: " + countVowels(userInput));
