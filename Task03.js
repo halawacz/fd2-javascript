@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-
 const user = {
   firstName: '',
   lastName: '',
