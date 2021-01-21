@@ -2,7 +2,7 @@ const user = {
   firstName: '',
   lastName: '',
   patronymicName: '',
-  gender: '',
+  genderIsMale: false,
   ageYears: 0,
   isRetired: false,
 };
@@ -23,9 +23,9 @@ while (user.patronymicName === '' || user.patronymicName == null) {
 }
 
 if (confirm('Ваш пол мужской?')) {
-  user.gender = 'мужской';
+  user.genderIsMale = true;
 } else {
-  user.gender = 'женский';
+  user.genderIsMale = false;
 }
 
 user.ageYears = Number(
@@ -36,9 +36,9 @@ while (isNaN(user.ageYears) || user.ageYears == 0) {
     prompt('Введите ваш возраст в годах (В ЧИСЛОВОМ ФОРМАТЕ) и нажмите ENTER: ')
   );
 }
-if (user.gender == 'мужской' && user.ageYears >= 65) {
+if (user.genderIsMale && user.ageYears >= 65) {
   user.isRetired = true;
-} else if (user.gender == 'женский' && user.ageYears >= 60) {
+} else if (user.genderIsMale == false && user.ageYears >= 60) {
   user.isRetired = true;
 } else {
   user.isRetired = false;
@@ -46,7 +46,7 @@ if (user.gender == 'мужской' && user.ageYears >= 65) {
 console.log(user.firstName);
 console.log(user.lastName);
 console.log(user.patronymicName);
-console.log(user.gender);
+console.log(`${user.genderIsMale ? 'Мужской' : 'Женский'}`);
 console.log(`user is retired: ${user.isRetired}`);
 console.log(user.ageYears);
 
