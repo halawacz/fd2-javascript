@@ -10,7 +10,15 @@ function checkIfPalindrom(s) {
     .replace(/[\s.,!?;":'ъь\-]/g, '')
     .replace(/ё/g, 'е');
 
-  return tempString == tempString.split('').reverse().join('');
+  function revString(w) {
+    if (w == '') {
+      return '';
+    } else {
+      return revString(w.substr(1)) + w.charAt(0);
+    }
+  }
+
+  return tempString == revString(tempString);
 }
 
 console.log(checkIfPalindrom(s1));
