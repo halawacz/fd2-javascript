@@ -26,3 +26,4 @@ console.log(checkIfPalindrom(s2));
 console.log(checkIfPalindrom(s3));
 console.log(checkIfPalindrom(s4));
 console.log(checkIfPalindrom(s5));
+console.log(checkIfPalindrom('$'.repeat(10e3)));

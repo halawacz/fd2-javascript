@@ -9,23 +9,24 @@
  - разница между буквами "е" и "ё".
 */
 
-function checkIfPalindrom(s) {
-  function check(w) {
-    if (w.length < 2) {
-      return true;
-    }
-    if (w.charAt(0) == w.charAt(w.length - 1)) {
-      return check(w.slice(1, w.length - 1));
-    }
-    return false;
-  }
+// решение без массивов и рекурсии
 
-  return check(
-    s
-      .toLowerCase()
-      .replace(/[\s.,!?;":'ъь\-]/g, '')
-      .replace(/ё/g, 'е')
-  );
+function checkIfPalindrom(s) {
+  let w = s
+    .toLowerCase()
+    .replace(/[\s.,!?;":'ъь\-]/g, '')
+    .replace(/ё/g, 'е');
+
+  if (w.length < 2) {
+    return true;
+  } else {
+    for (i = 0; i < w.length / 2; i++) {
+      if (w[i] != w[w.length - (i + 1)]) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 // tests
@@ -35,7 +36,7 @@ let s2 = 'Абфываолыфрал';
 let s3 = '';
 let s4 = 'а роза упала, на лапу Азора';
 let s5 = 'Аргентина манит негра';
-let s6 = '$'.repeat(10e3);
+let s6 = '#'.repeat(10e3);
 
 console.log(checkIfPalindrom(s1));
 console.log(checkIfPalindrom(s2));
