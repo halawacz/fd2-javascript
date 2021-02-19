@@ -20,7 +20,7 @@ function checkIfPalindrome(s) {
   if (w.length < 2) {
     return true;
   } else {
-    for (i = 0; i < w.length / 2; i++) {
+    for (i = 0; i < Math.floor(w.length / 2); i++) {
       if (w[i] != w[w.length - (i + 1)]) {
         return false;
       }
@@ -33,7 +33,7 @@ function checkIfPalindrome(s) {
 
 let s1 = 'Съешь же ещё этих мягких французских булок, да выпей чаю!';
 let s2 = 'Абфываолыфрал';
-let s3 = '';
+let s3 = 'adsf';
 let s4 = 'а роза упала, на лапу Азора';
 let s5 = 'Аргентина манит негра';
 let s6 = '#'.repeat(10e3);
