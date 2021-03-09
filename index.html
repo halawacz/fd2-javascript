@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <form id="f1" action="https://fe.it-academy.by/TestForm.php" method="POST">
+      <label for="devs">Developers</label>
+      <input type="text" id="devs" name="devs"></input>
+      <span id="devsErrors"></span>
+      <label for="sitename">Site name</label>
+      <input type="text" id="sitename" name="sitename"></input>
+      <span id="sitenameErrors"></span>
+      <label for="siteurl">Site URL</label>
+      <input type="text" id="siteurl" name="siteurl"></input>
+      <span id="siteUrlErrors"></span>
+      <label for "email">Email Address</label>
+      <input type = "text" id="email" name="email"></input>
+      <span id="emailErrors"></span>
+      <label for "launched">Launch Date</label>
+      <input type="date" id="launched" name="launched" value = "2021-01-01" min="1991-08-06"></input>
+      <span id="launchedErrors"></span>
+      <label for "visitors">Number of Visitors</label>
+      <input type="number" id="visitors" name="visitors"></input>
+      <span id="visitorsErrors"></span>
+     <label for "hosting">Hosting Type</label>
+      <label for "free">Free</label>
+      <input type="radio" id="free" name="hosting" value="1"></input>
+      <label for "paid">Paid</label>
+      <input type="radio" id="paid" name="hosting" value="2"></input>
+      <label for "vip">VIP</label>
+      <input type="radio" id="vip" name="hosting" value="3"></input>
+      <span id="hostingErrors"></span>
+      <input type="submit" value="Submit"></input>
+      </form>
+
+    <form id="f2">
+      </form>
+    <script src="script.js"></script>
+  </body>
+</html>
