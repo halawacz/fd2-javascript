@@ -14,8 +14,7 @@ function buildWrapper(arg) {
 
     const attrFormatted = Object.keys(attr)
       .map((e) => ` ${e}='${replacer(attr[e])}'`)
-      .toString()
-      .replace(/,/g, '');
+      .join('');
 
     const result = `<${arg}${attrFormatted}>${inputFormatted}</${arg}>`;
     return result;
@@ -30,7 +29,8 @@ console.log(wrapP('test string'));
 console.log(wrapP('N<P'));
 console.log(wrapP('test', { lang: 'ru' }));
 console.log(
-  wrapH1('СТИХИ', { align: 'center', title: "M&M's" }) ==
+  wrapH1('СТИХИ', { align: 'center', title: "M&M's" }) ===
     "<H1 align='center' title='M&amp;M&apos;s'>СТИХИ</H1>"
 );
 console.log(wrapH1('СТИХИ', { align: 'center', title: "M&M's" }));
+console.log(wrapP('my photo', { alt: 'mum,dad' }));
