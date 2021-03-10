@@ -1,13 +1,15 @@
 'use strict';
 
-let errorCounter = 0;
-
+// Проверка на пустое поле
 function validateDevs(focus = false) {
   let d = document.forms.f1.devs.value;
+  let errorCounter = 0;
+
   if (!d) {
     errorCounter++;
     document.querySelector('#devsErrors').innerHTML =
       'Поле не должно быть пустым';
+    document.forms.f1.devs.setAttribute('invalid', 'true');
     if (focus == true) {
       document.querySelector('#devs').focus();
     }
@@ -17,8 +19,11 @@ function validateDevs(focus = false) {
   return errorCounter;
 }
 
+// Проверка на пустое поле
 function validateSiteName(focus = false) {
+  let errorCounter = 0;
   let field = document.forms.f1.sitename.value;
+
   if (!field) {
     errorCounter++;
     document.querySelector('#sitenameErrors').innerHTML =
@@ -32,10 +37,13 @@ function validateSiteName(focus = false) {
   return errorCounter;
 }
 
+// Проверка на пустое поле или на поле не являющееся URL (паттерн в константе exp)
 function validateSiteUrl(focus = false) {
+  let errorCounter = 0;
   const exp = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
   const regexURL = new RegExp(exp);
   let field = document.forms.f1.siteurl.value;
+
   if (!field || !field.match(regexURL)) {
     errorCounter++;
     document.querySelector('#siteUrlErrors').innerHTML =
@@ -49,7 +57,9 @@ function validateSiteUrl(focus = false) {
   return errorCounter;
 }
 
+// Проверка на пустое поле или на поле не являющееся Email (паттерн в константе exp)
 function validateEmail(focus = false) {
+  let errorCounter = 0;
   const exp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const regexEmail = new RegExp(exp);
   let field = document.forms.f1.email.value;
@@ -64,33 +74,143 @@ function validateEmail(focus = false) {
   } else {
     document.querySelector('#emailErrors').innerHTML = '';
   }
+  return errorCounter;
 }
 
+function validateSelectSection(focus = false) {
+  let errorCounter = 0;
+  let field = document.querySelector('#selectSection').value;
+
+  if (field == 0) {
+    errorCounter++;
+    document.querySelector('#selectSectionErrors').innerHTML =
+      'Выберите значение';
+    if (focus == true) {
+      document.querySelector('#selectSection').focus();
+    }
+  } else {
+    document.querySelector('#selectSectionErrors').innerHTML = '';
+  }
+  return errorCounter;
+}
+
+// Дата запуска вебсайта не может быть задана ранее 06.08.1991 (первый вебсайт, ограничена c помощью аттрибута min) и не может находиться в будущем
 function validateDate(focus = false) {
+  let errorCounter = 0;
   let field = document.forms.f1.launched.value;
   let today = new Date();
   let launchDate = new Date(field);
-  if (launchDate > today) {
+
+  if (!field || launchDate > today) {
     errorCounter++;
     document.querySelector('#launchedErrors').innerHTML =
-      'Дата запуска не должна быть в будущем';
+      'Введите дату создания. Дата не должна быть в будущем';
     if (focus == true) {
       document.querySelector('#launched').focus();
     }
   } else {
     document.querySelector('#launchedErrors').innerHTML = '';
   }
+  return errorCounter;
 }
 
-function validateOnSumbmit() {
-  errorCounter = 0;
-  validateDate(true);
-  validateEmail(true);
-  validateSiteUrl(true);
-  validateSiteName(true);
-  validateDevs(true);
-  console.log(`Number of errors: ${errorCounter}`);
-  if (errorCounter) {
+// Проверка на пустое поле или на поле не являющееся числом
+function validateVisitors(focus = false) {
+  let errorCounter = 0;
+  let field = document.forms.f1.visitors.value;
+
+  if (!field || isNaN(field)) {
+    errorCounter++;
+    document.querySelector('#visitorsErrors').innerHTML =
+      'Поле не должно быть пустым и должно содержать число';
+    if (focus == true) {
+      document.querySelector('#visitors').focus();
+    }
+  } else {
+    document.querySelector('#visitorsErrors').innerHTML = '';
+  }
+
+  return errorCounter;
+}
+
+// Проверка на то что одна из кнопок выбрана
+function validateHosting(focus = false) {
+  let errorCounter = 0;
+  let checked1 = document.querySelector('#free').checked;
+  let checked2 = document.querySelector('#paid').checked;
+  let checked3 = document.querySelector('#vip').checked;
+
+  if (!(checked1 || checked2 || checked3)) {
+    errorCounter++;
+    document.querySelector('#hostingErrors').innerHTML =
+      'Выберите тип хостинга';
+
+    if (focus == true) {
+      document.querySelector('#free').focus();
+    }
+  } else {
+    document.querySelector('#hostingErrors').innerHTML = '';
+  }
+
+  return errorCounter;
+}
+
+// проверка checkbox - отзывы должны быть разрешены
+function validateReviews(focus = false) {
+  let errorCounter = 0;
+  let field = document.querySelector('#allowReviews').checked;
+
+  if (!field) {
+    errorCounter++;
+    document.querySelector('#allowReviewsErrors').innerHTML =
+      'Отзывы должны быть разрешены';
+    if (focus == true) {
+      document.querySelector('#allowReviews').focus();
+    }
+  } else {
+    document.querySelector('#allowReviewsErrors').innerHTML = '';
+  }
+  return errorCounter;
+}
+
+// проверка описания - поле не должно быть пустым
+function validateDescription(focus = false) {
+  let errorCounter = 0;
+  let field = document.querySelector('#description').value;
+
+  if (!field) {
+    errorCounter++;
+    document.querySelector('#descriptionErrors').innerHTML =
+      'Поле не должно быть пустым';
+    if (focus == true) {
+      document.querySelector('#description').focus();
+    }
+  } else {
+    document.querySelector('#descriptionErrors').innerHTML = '';
+  }
+  return errorCounter;
+}
+
+// функция валидации формы по submit
+function validateOnSubmit() {
+  let fe = 0; // final errors
+
+  fe++; // прибавляем 1 для фокусировки на первом поле
+  fe += validateDevs(fe);
+  fe += validateSiteName(fe);
+  fe += validateSiteUrl(fe);
+  fe += validateEmail(fe);
+  fe += validateSelectSection(fe);
+  fe += validateDate(fe);
+  fe += validateVisitors(fe);
+  fe += validateHosting(fe);
+  fe += validateReviews(fe);
+  fe += validateDescription(fe);
+  fe--; //отнимаем 1 для корректного подсчета общего числа ошибок
+
+  // console.log(fe);
+
+  if (fe) {
     event.preventDefault();
   }
 }
@@ -99,5 +219,15 @@ document.forms.f1.devs.addEventListener('blur', validateDevs);
 document.forms.f1.sitename.addEventListener('blur', validateSiteName);
 document.forms.f1.siteurl.addEventListener('blur', validateSiteUrl);
 document.forms.f1.email.addEventListener('blur', validateEmail);
-document.forms.f1.launched.addEventListener('blur', validateDate);
-document.forms.f1.addEventListener('submit', validateOnSumbmit);
+document.forms.f1.selectSection.addEventListener(
+  'change',
+  validateSelectSection
+);
+document.forms.f1.launched.addEventListener('change', validateDate);
+document.forms.f1.visitors.addEventListener('blur', validateVisitors);
+document.querySelector('#free').addEventListener('change', validateHosting);
+document.querySelector('#paid').addEventListener('change', validateHosting);
+document.querySelector('#vip').addEventListener('change', validateHosting);
+document.forms.f1.allowReviews.addEventListener('change', validateReviews);
+document.forms.f1.description.addEventListener('blur', validateDescription);
+document.forms.f1.addEventListener('submit', validateOnSubmit);
