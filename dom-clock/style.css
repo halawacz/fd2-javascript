@@ -1,0 +1,36 @@
+#container {
+  height: 20rem;
+  width: 20rem;
+  border-style: solid;
+  border-radius: 50%;
+  transform: translateY(0px);
+}
+
+#sa {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  transform: rotate(90deg);
+  transform-origin: 100%;
+  background-color: black;
+  height: 3px;
+}
+
+#ma {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  transform: rotate(90deg);
+  transform-origin: 100%;
+  background-color: black;
+  height: 5px;
+}
+
+#ha {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  transform-origin: 100%;
+  background-color: black;
+  height: 8px;
+}
