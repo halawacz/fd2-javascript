@@ -1,0 +1,7 @@
+.hold {
+  cursor: -webkit-grab;
+}
+
+.grab {
+  cursor: -webkit-grabbing;
+}
