@@ -7,7 +7,7 @@ let ha = document.querySelector(".ha"); // ha - hour arm
 let tick = setInterval(time, 1000);
 
 function moveArm(arm, d) {
-  arm.style.transform = `rotate(${90 + d}deg)`;
+  arm.style.transform = `rotate(${d}deg)`;
 }
 
 function time() {
@@ -18,7 +18,7 @@ function time() {
 
   let secRotate = seconds * (360 / 60);
   let minRotate = minutes * (360 / 60) + secRotate / 60;
-  let hRotate = hours * (360 / 12) + minRotate / 60;
+  let hRotate = hours * (360 / 12) + minRotate / 12;
 
   moveArm(sa, secRotate);
   moveArm(ma, minRotate);
