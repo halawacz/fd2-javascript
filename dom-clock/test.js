@@ -1,1 +1,1 @@
-console.log(2**451)
+console.log(2 ** 451);

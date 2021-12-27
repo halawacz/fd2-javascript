@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-let sa = document.querySelector('#sa'); // sa - seconds arm
-let ma = document.querySelector('#ma'); // ma - minutes arm
-let ha = document.querySelector('ha'); // ha - hour arm
+let sa = document.querySelector("#sa"); // sa - seconds arm
+let ma = document.querySelector("#ma"); // ma - minutes arm
+let ha = document.querySelector("ha"); // ha - hour arm
 
 let tick = setInterval(time, 1000);
 
@@ -27,6 +27,6 @@ function time() {
 
 function stopTick() {
   clearInterval(tick);
-}
 
-setTimeout(stopTick, 60000);
+  setTimeout(stopTick, 60000);
+}
