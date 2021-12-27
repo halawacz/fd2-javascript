@@ -11,8 +11,7 @@ body {
   width: 20rem;
   border-style: solid;
   border-radius: 50%;
-  transform: translateY(0px);
-  background-color: honeydew;
+  background-color: rgb(240, 255, 240);
   position: relative;
 }
 
