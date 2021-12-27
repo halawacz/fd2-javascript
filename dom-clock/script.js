@@ -1,8 +1,8 @@
 "use strict";
 
-let sa = document.querySelector("#sa"); // sa - seconds arm
-let ma = document.querySelector("#ma"); // ma - minutes arm
-let ha = document.querySelector("ha"); // ha - hour arm
+let sa = document.querySelector(".sa"); // sa - seconds arm
+let ma = document.querySelector(".ma"); // ma - minutes arm
+let ha = document.querySelector(".ha"); // ha - hour arm
 
 let tick = setInterval(time, 1000);
 
@@ -16,9 +16,9 @@ function time() {
   let minutes = date.getMinutes();
   let hours = date.getHours();
 
-  let secRotate = seconds * 6; // i.e., (secRotate/60)*360
-  let minRotate = (minutes / 60) * 360 + (seconds / 60) * 6;
-  let hRotate = (hours / 12) * 360 + (minutes / 60) * 30;
+  let secRotate = seconds * (360 / 60);
+  let minRotate = minutes * (360 / 60) + secRotate / 60;
+  let hRotate = hours * (360 / 12) + minRotate / 60;
 
   moveArm(sa, secRotate);
   moveArm(ma, minRotate);
